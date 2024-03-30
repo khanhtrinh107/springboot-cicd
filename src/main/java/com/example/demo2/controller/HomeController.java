@@ -9,4 +9,8 @@ public class HomeController {
     public String test(){
         return "khanh trinh dep trai dang hoc devops";
     }
+    @GetMapping("/test")
+    public String test2(){
+        return "khanh trinh dep trai test github actions";
+    }
 }
