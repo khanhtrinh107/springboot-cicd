@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
         image: mysql:latest
         env:
           MYSQL_ROOT_PASSWORD: tkht
-          MYSQL_DATABASE: 123456
+          MYSQL_DATABASE: your_database_name
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -52,6 +52,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: khanhtrinh2401/springboot-cicd
+        tags: khanhtrinh2401/tkth-cicd
 
 
