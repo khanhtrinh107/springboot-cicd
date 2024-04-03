@@ -1,0 +1,30 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: CD pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI pipeline"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - name: Pull docker image
+      run: sudo docker pull khanhtrinh2401/springboot-cicd:latest
+    - name: Delete old docker container
+      run: sudo docker rm -f springboot-cicd-container || true
+    - name: Run docker container
+      run : sudo docker run -d -p 8080:8080 --name springboot-cicd-container khanhtrinh2401/springboot-cicd
+
+
+
+
